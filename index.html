@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>For Mama and Ate</title>
+  <meta name="description" content="A letter of thanks, an apology, and love.">
+  <meta name="theme-color" content="#04060d">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-scene="gate" data-warmth="0" data-layout="stacked">
+
+  <!-- Atmosphere -->
+  <div class="backdrop" aria-hidden="true">
+    <div class="glow glow--cool"></div>
+    <div class="glow glow--warm"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <!-- Particle field (never intercepts pointer events) -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- Family photograph. Source is set from js/story.js (assets.photo). -->
+  <figure class="photo-frame" id="photo" aria-hidden="true">
+    <img id="photo-img" alt="Mama and Ate together" decoding="async">
+    <figcaption class="photo-missing" id="photo-missing">
+      Add your photo here<br><span id="photo-missing-path">assets/family-photo.jpg</span>
+    </figcaption>
+  </figure>
+
+  <!-- Text passages appear here -->
+  <main class="passage-layer" id="passage-layer" aria-live="polite"></main>
+
+  <!-- Opening gate: gives a real user gesture so music can start -->
+  <section class="gate" id="gate" aria-label="Begin">
+    <p class="gate__note">This is best experienced in a quiet moment, with sound on.<br>It will work in silence, too.</p>
+    <div class="gate__actions">
+      <button class="btn btn--primary" id="begin-music" type="button">Begin with music</button>
+      <button class="btn" id="begin-silent" type="button">Begin in silence</button>
+    </div>
+    <p class="gate__warn" id="gate-warn" hidden></p>
+  </section>
+
+  <!-- Music control -->
+  <div class="music" id="music">
+    <span class="music__label" aria-hidden="true">Solace</span>
+    <button class="icon-btn" id="music-toggle" type="button" aria-label="Play music" aria-pressed="false">
+      <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+      <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+    </button>
+  </div>
+
+  <!-- Gentle manual controls -->
+  <nav class="transport" id="transport" aria-label="Pacing">
+    <button class="link-btn" id="hold-btn" type="button" aria-pressed="false">Pause</button>
+    <span class="transport__hint" id="transport-hint">Click anywhere, or press → to continue</span>
+    <button class="link-btn" id="next-btn" type="button">Continue</button>
+    <button class="link-btn" id="replay-btn" type="button" hidden>Watch again</button>
+  </nav>
+
+  <noscript><p class="noscript">This letter needs JavaScript to be shown.</p></noscript>
+
+  <script src="js/story.js" defer></script>
+  <script src="js/audio.js" defer></script>
+  <script src="js/particles.js" defer></script>
+  <script src="js/sequencer.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
